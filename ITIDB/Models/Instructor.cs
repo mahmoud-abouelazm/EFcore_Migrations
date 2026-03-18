@@ -16,7 +16,7 @@ namespace ITIDB.Models
         //
         [ForeignKey(nameof(Department))]
         public int deptId { get; set; }
-        public virtual Department Department { get; set; }
+        public virtual Department? Department { get; set; }
         //
         public virtual ICollection<Department>DepartmentsManaged { get; set; }
 

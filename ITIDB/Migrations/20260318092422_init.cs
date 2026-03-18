@@ -54,7 +54,7 @@ namespace ITIDB.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Dept_ManagerId = table.Column<int>(type: "int", nullable: false),
+                    Dept_ManagerId = table.Column<int>(type: "int", nullable: true),
                     Manager_hiredate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -81,7 +81,7 @@ namespace ITIDB.Migrations
                         column: x => x.deptId,
                         principalTable: "Department",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -216,7 +216,7 @@ namespace ITIDB.Migrations
                 column: "Dept_ManagerId",
                 principalTable: "Instructor",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         /// <inheritdoc />
