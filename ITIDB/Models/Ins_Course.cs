@@ -9,11 +9,11 @@ namespace ITIDB.Models
     {
         [ForeignKey(nameof(Course))]
         public int Crs_Id { get; set; }
-        [ForeignKey(nameof(Student))]
-        public int st_Id { get; set; }
+        [ForeignKey(nameof(Instructor))]
+        public int Instructor_Id { get; set; }
         public int Grade { get; set; }
 
-        public Student Student { get; set; }
+        public Instructor Instructor{ get; set; }
         public Course Course { get; set; }
     }
 }

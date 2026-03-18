@@ -18,7 +18,7 @@ namespace ITIDB.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Ins_Course>().HasKey(i => new {i.Crs_Id , i.st_Id});
+            modelBuilder.Entity<Ins_Course>().HasKey(i => new {i.Crs_Id , i.Instructor_Id});
             modelBuilder.Entity<Std_Course>().HasKey(i => new {i.CourseId , i.StudentId});
            
             modelBuilder.Entity<Student>()
