@@ -12,14 +12,13 @@ namespace ITIDB.Models
         public string Description { get; set; }
         public string  Location { get; set; }
         //
-        [ForeignKey(nameof(Dept_Manager))]
         public int? Dept_ManagerId { get; set; }
         public virtual Instructor? Dept_Manager { get; set; }
         //
 
         //
-        public ICollection<Student> Students { get; set; }
-        public ICollection<Instructor> Instructors{ get; set; }
+        public ICollection<Student> Students { get; set; } = new HashSet<Student>();
+        public ICollection<Instructor> Instructors { get; set; } = new HashSet<Instructor>();
         //
         public DateTime Manager_hiredate { get; set; }
     }

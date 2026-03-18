@@ -254,7 +254,7 @@ namespace ITIDB.Migrations
                     b.HasOne("ITIDB.Models.Department", "Department")
                         .WithMany("Instructors")
                         .HasForeignKey("deptId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Department");

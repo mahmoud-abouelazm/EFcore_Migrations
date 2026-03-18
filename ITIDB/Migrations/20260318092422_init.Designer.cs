@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ITIDB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260318090738_changeDepartmentFK")]
-    partial class changeDepartmentFK
+    [Migration("20260318092422_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,7 +58,7 @@ namespace ITIDB.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Dept_ManagerId")
+                    b.Property<int?>("Dept_ManagerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -222,10 +222,9 @@ namespace ITIDB.Migrations
             modelBuilder.Entity("ITIDB.Models.Department", b =>
                 {
                     b.HasOne("ITIDB.Models.Instructor", "Dept_Manager")
-                        .WithMany("DepartmentManaged")
+                        .WithMany("DepartmentsManaged")
                         .HasForeignKey("Dept_ManagerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Dept_Manager");
                 });
@@ -258,7 +257,7 @@ namespace ITIDB.Migrations
                     b.HasOne("ITIDB.Models.Department", "Department")
                         .WithMany("Instructors")
                         .HasForeignKey("deptId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Department");
@@ -317,7 +316,7 @@ namespace ITIDB.Migrations
 
             modelBuilder.Entity("ITIDB.Models.Instructor", b =>
                 {
-                    b.Navigation("DepartmentManaged");
+                    b.Navigation("DepartmentsManaged");
 
                     b.Navigation("Ins_Courses");
                 });

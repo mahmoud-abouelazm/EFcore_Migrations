@@ -10,7 +10,7 @@ namespace ITIDB.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "Server=.;Database=ITIUsingEFcore;Trusted_Connection=True;Encrypt=False;";
+            var connectionString = "Server=.;Database=ITIUsingEFcore2;Trusted_Connection=True;Encrypt=False;";
 
             optionsBuilder.UseSqlServer(connectionString);
             base.OnConfiguring(optionsBuilder);
@@ -37,6 +37,12 @@ namespace ITIDB.Context
                 .HasOne(s => s.Dept_Manager)
                 .WithMany(d=>d.DepartmentsManaged)
                 .HasForeignKey(s=>s.Dept_ManagerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Instructor>()
+                .HasOne(s => s.Department)
+                .WithMany(d=>d.Instructors)
+                .HasForeignKey(s=>s.deptId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             
